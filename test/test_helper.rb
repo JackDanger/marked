@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.expand_path File.join(File.dirname(__FILE__), '..', 'lib', 'marker')
+require File.expand_path File.join(File.dirname(__FILE__), '..', 'lib', 'marked')
 require 'shoulda'
 require 'mocha'
 

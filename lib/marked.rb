@@ -1,21 +1,21 @@
-module Marker
+module Marked
   def mark *objects
 
     returnable = block_given? ? yield : objects.last
 
-    Marker.log "<MARK>"
+    Marked.log "<MARK>"
 
     if block_given?
-      Marker.print returnable
-      Marker.log   returnable
+      Marked.print returnable
+      Marked.log   returnable
     end
 
     objects.each do |object|
-      Marker.print object
-      Marker.log   object
+      Marked.print object
+      Marked.log   object
     end
 
-    Marker.log "</MARK>"
+    Marked.log "</MARK>"
 
     returnable
   end
@@ -32,5 +32,5 @@ module Marker
 end
 
 class Object
-  include Marker
+  include Marked
 end
