@@ -58,4 +58,4 @@ INSTALL
     * gem install marked
 
 
-Copyright 2011 Jack Danger Canty. Patches welcome, forks celebrated
+Copyright 2011 [Jack Danger Canty](http://jackcanty.com). Patches welcome, forks celebrated
