@@ -1,7 +1,16 @@
 Marked
 =
 
-[http://github.com/JackDanger/marked](http://github.com/JackDanger/marked)
+<pre>
+    "You stroll with this intelligence
+    in and out of fields of knowledge, getting always
+    more marks on your preserving tablets.
+    There is another kind of tablet, one
+    already completed and preserved inside you.
+    This second knowing is a fountainhead
+    from within you, moving out"
+        -- Rumi
+</pre>
 
 DESCRIPTION
 ==
