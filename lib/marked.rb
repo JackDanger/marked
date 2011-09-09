@@ -3,31 +3,30 @@ module Marked
 
     returnable = block_given? ? yield : objects.last
 
-    Marked.log "<MARK>"
+    Marked.log "MARKED #{caller.first.split(':in ').first}"
 
     if block_given?
-      Marked.print returnable
-      Marked.log   returnable
+      Marked.log Marked.pad returnable
     end
 
     objects.each do |object|
-      Marked.print object
-      Marked.log   object
+      Marked.log Marked.pad object
     end
-
-    Marked.log "</MARK>"
 
     returnable
   end
 
   def self.log object
-    if defined?(Rails)
-      Rails.logger.debug object.is_a?(String) ? object : object.inspect
-    end
+    Rails.logger.debug object if defined?(Rails)
+    print object
   end
 
   def self.print object
-    STDOUT.puts object.is_a?(String) ? object : object.inspect
+    STDOUT.puts object
+  end
+
+  def self.pad object
+    "       " + (object.is_a?(String) ? object : object.inspect)
   end
 end
 
