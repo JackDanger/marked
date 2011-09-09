@@ -24,7 +24,7 @@ Before:
 
     class User < ActiveRecord::Base
       def some_method
-        complex_result
+        complex_result.with_chaining( omg.I_lost_track )
       end
     end
 
@@ -34,11 +34,14 @@ You write tests. Okay, but after that, if you're tracking down a bug?
 
     class User < ActiveRecord::Base
       def some_method
-        mark complex_result
+        complex_result.with_chaining( mark omg.I_lost_track )
       end
     end
 
 And you'll get the value of `complex_result` printed to your console and to the Rails log (if it exists)
+
+    MARKED /code/my_file:5
+           "omg.I_lost_track contents"
 
 Can take multiple arguments, always returning the last:
 
