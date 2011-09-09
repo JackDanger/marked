@@ -3,7 +3,7 @@ module Marked
 
     returnable = block_given? ? yield : objects.last
 
-    Marked.log "MARKED #{caller.first.split(':in ').first}"
+    Marked.log "\nMARKED #{caller.first.split(':in ').first}"
 
     if block_given?
       Marked.log Marked.pad returnable

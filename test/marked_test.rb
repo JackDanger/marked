@@ -13,8 +13,8 @@ class MarkedTest < Test::Unit::TestCase
 
   context "logging" do
     setup {
-      Rails.logger.expects(:debug).with("MARKED ./test/marked_test.rb:22")
-      Marked.expects(:print).with(      "MARKED ./test/marked_test.rb:22")
+      Rails.logger.expects(:debug).with("\nMARKED ./test/marked_test.rb:22")
+      Marked.expects(:print).with(      "\nMARKED ./test/marked_test.rb:22")
       Rails.logger.expects(:debug).with("       this should be printed")
       Marked.expects(:print).with(      "       this should be printed")
     }
@@ -24,7 +24,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging a single argument" do
     setup {
-      expect_unpadded_log "MARKED ./test/marked_test.rb:31"
+      expect_unpadded_log "\nMARKED ./test/marked_test.rb:31"
       expect_log "this should be printed"
     }
     should "return its argument" do
@@ -33,7 +33,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging multiple arguments" do
     setup {
-      expect_unpadded_log "MARKED ./test/marked_test.rb:41"
+      expect_unpadded_log "\nMARKED ./test/marked_test.rb:41"
       expect_log "this should be printed"
       expect_log "this too"
     }
@@ -43,7 +43,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging non-strings" do
     setup {
-      expect_unpadded_log "MARKED ./test/marked_test.rb:51"
+      expect_unpadded_log "\nMARKED ./test/marked_test.rb:51"
       expect_log({:a =>'a'})
       expect_log [1, 2, 3]
     }
@@ -55,7 +55,7 @@ class MarkedTest < Test::Unit::TestCase
     setup {
       @obj = {}
       @obj.expects(:called!).returns('returned!').once
-      expect_unpadded_log "MARKED ./test/marked_test.rb:63"
+      expect_unpadded_log "\nMARKED ./test/marked_test.rb:63"
       expect_log "first arg"
       expect_log "returned!"
     }
