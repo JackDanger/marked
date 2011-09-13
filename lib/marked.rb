@@ -1,9 +1,9 @@
 module Marked
   def mark *objects
 
-    returnable = block_given? ? yield : objects.last
-
     Marked.log "\nMARKED #{caller.first.split(':in ').first}"
+
+    returnable = block_given? ? yield : objects.last
 
     if block_given?
       Marked.log Marked.pad returnable
