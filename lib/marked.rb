@@ -44,7 +44,7 @@ module Marked
   end
 
   def self.print_benchmark measurement
-    log "       * Executed in #{'%0.3f' % measurement.total} seconds (#{'%0.3f' % measurement.utime} cpu)\n"
+    log pad "* Executed in #{'%0.3f' % measurement.total} seconds (#{'%0.3f' % measurement.utime} cpu)\n"
   end
 end
 
