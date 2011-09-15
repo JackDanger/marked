@@ -7,7 +7,6 @@ module Marked
       require 'benchmark'
       result = nil
       bench = Benchmark.measure { result = yield }
-      Marked.print_benchmark bench
       result
     else
       objects.last
@@ -17,9 +16,9 @@ module Marked
       Marked.log Marked.pad object
     end
 
-    if block_given?
-      Marked.log Marked.pad returnable
-    end
+    Marked.log Marked.pad returnable if block_given?
+
+    Marked.print_benchmark bench if result
 
     Marked.rails_log " / FINISHED MARKING"
 
