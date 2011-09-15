@@ -3,7 +3,15 @@ module Marked
 
     Marked.log "\nMARKED #{caller.first.split(':in ').first}"
 
-    returnable = block_given? ? yield : objects.last
+    returnable = if block_given?
+      require 'benchmark'
+      result = nil
+      bench = Benchmark.measure { result = yield }
+      Marked.print_benchmark bench
+      result
+    else
+      objects.last
+    end
 
     if block_given?
       Marked.log Marked.pad returnable
@@ -33,6 +41,10 @@ module Marked
 
   def self.pad object
     "       " + (object.is_a?(String) ? object : object.inspect)
+  end
+
+  def self.print_benchmark measurement
+    log " * Executed in #{'%0.3f' % measurement.real} seconds (#{'%0.3f' % measurement.cutime} cpu)\n"
   end
 end
 
