@@ -13,12 +13,12 @@ module Marked
       objects.last
     end
 
-    if block_given?
-      Marked.log Marked.pad returnable
-    end
-
     objects.each do |object|
       Marked.log Marked.pad object
+    end
+
+    if block_given?
+      Marked.log Marked.pad returnable
     end
 
     Marked.rails_log " / FINISHED MARKING"
