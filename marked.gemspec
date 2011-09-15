@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{marked}
-  s.version = "1.1.3"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jack Danger Canty"]
-  s.date = %q{2011-09-12}
+  s.date = %q{2011-09-14}
   s.description = %q{Quick Ruby debugger. Easily print any object or string to the console and to your logs while you're working.}
   s.email = %q{rubygems@6brand.com}
   s.extra_rdoc_files = [
@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/JackDanger/marked}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.4.2}
   s.summary = %q{Fast debugging for Ruby. Output any objects or blocks to both Rails log and console output simultaneously}
 
   if s.respond_to? :specification_version then
