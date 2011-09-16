@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/test_helper')
 class MarkedTest < Test::Unit::TestCase
 
   def expect_log string
-    Marked.expects(:log).with Marked.pad string
+    Marked.expects(:log).with ' ' + Marked.pad(string)
   end
 
   def expect_unpadded_log string
@@ -14,10 +14,10 @@ class MarkedTest < Test::Unit::TestCase
 
   context "logging" do
     setup {
-      Rails.logger.expects(:debug).with "\nMARKED #{__FILE__}:24"
-      Marked.expects(:print).with       "\nMARKED #{__FILE__}:24"
-      Rails.logger.expects(:debug).with "       this should be printed"
-      Marked.expects(:print).with       "       this should be printed"
+      Rails.logger.expects(:debug).with "\nMARKED  #{__FILE__}:24"
+      Marked.expects(:print).with       "\nMARKED  #{__FILE__}:24"
+      Rails.logger.expects(:debug).with "#{Marked.pad ' '}this should be printed"
+      Marked.expects(:print).with       "#{Marked.pad ' '}this should be printed"
       Rails.logger.expects(:debug).with " / FINISHED MARKING"
     }
     should "goes to two outputs" do
@@ -26,7 +26,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging a single argument" do
     setup {
-      expect_unpadded_log "\nMARKED #{__FILE__}:33"
+      expect_unpadded_log "\nMARKED  #{__FILE__}:33"
       expect_log "this should be printed"
     }
     should "return its argument" do
@@ -35,7 +35,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging multiple arguments" do
     setup {
-      expect_unpadded_log "\nMARKED #{__FILE__}:43"
+      expect_unpadded_log "\nMARKED  #{__FILE__}:43"
       expect_log "this should be printed"
       expect_log "this too"
     }
@@ -45,7 +45,7 @@ class MarkedTest < Test::Unit::TestCase
   end
   context "printing and logging non-strings" do
     setup {
-      expect_unpadded_log "\nMARKED #{__FILE__}:53"
+      expect_unpadded_log "\nMARKED  #{__FILE__}:53"
       expect_log({:a =>'a'})
       expect_log [1, 2, 3]
     }
@@ -57,7 +57,7 @@ class MarkedTest < Test::Unit::TestCase
     setup {
       @obj = {}
       @obj.expects(:called!).returns('returned!').once
-      expect_unpadded_log "\nMARKED #{__FILE__}:65"
+      expect_unpadded_log "\nMARKED  #{__FILE__}:65"
       expect_log "first arg"
       expect_log "returned!"
     }
@@ -71,8 +71,4 @@ class MarkedTest < Test::Unit::TestCase
                    Marked.pad('padme')
     end
   end
-  def setup
-    Marked.stubs(:print_benchmark)
-  end
-
 end

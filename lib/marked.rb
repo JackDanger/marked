@@ -2,7 +2,8 @@ module Marked
   def mark *objects
 
     Marked.indent_out
-    Marked.log "\nMARKED #{caller.first.split(':in ').first}"
+
+    Marked.log "\nMARKED  #{caller.first.split(':in ').first}"
 
     returnable = if block_given?
       require 'benchmark'
@@ -23,8 +24,9 @@ module Marked
 
     Marked.rails_log " / FINISHED MARKING"
 
-    Marked.indent_in
     returnable
+  ensure
+    Marked.indent_in
   end
 
   class << self
@@ -51,10 +53,6 @@ module Marked
 
     def indent
       @indent ||= 0
-    end
-
-    def indent= integer
-      @indent = integer
     end
 
     def indent_out

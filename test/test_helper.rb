@@ -10,3 +10,9 @@ module Rails
     Logger
   end
 end
+
+class Test::Unit::TestCase
+  def setup
+    Marked.stubs(:print_benchmark)
+  end
+end
